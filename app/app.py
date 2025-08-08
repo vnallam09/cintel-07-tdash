@@ -7,8 +7,37 @@ import palmerpenguins
 
 df = palmerpenguins.load_penguins()
 
-ui.page_opts(title="Penguins dashboard", fillable=True)
+# ui.page_opts(title="Penguins dashboard", fillable=True)
+ui.tags.head(
+    ui.tags.style("""
+        .simple-header {
+            background: #8f91b7;
+            color: white;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .header-title {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .header-subtitle {
+            margin: 0.5rem 0 0 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    """)
+)
 
+ui.div(
+    ui.h1("🐧 Penguins Dashboard", class_="header-title"),
+    ui.p("Explore penguin species data", class_="header-subtitle"),
+    class_="simple-header"
+)
 
 with ui.sidebar(title="Filter controls"):
     ui.input_slider("mass", "Mass", 2000, 6000, 6000)
@@ -85,7 +114,7 @@ with ui.layout_columns():
             )
 
     with ui.card(full_screen=True):
-        ui.card_header("Penguin data")
+        ui.card_header("Penguin Data")
 
         @render.data_frame
         def summary_statistics():
